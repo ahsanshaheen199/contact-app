@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Contact from './Contact'
 import SearchContact from './SearchContact'
 
 const Contacts = ({ contacts, setContacts, setSelectContact }) => {
+    const [searchText, setSearchText] = useState('');
+
+    const filteredContacts = contacts.filter( contactItem => contactItem.firstName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 || contactItem.lastName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 
+    );
+
     return (
         <>
             <h3 className="text-center">Contacts</h3>
-            <SearchContact />
+            <SearchContact searchText={searchText} setSearchText={setSearchText} />
             {
-                contacts.map( ( contact ) => {
+                filteredContacts.map( ( contact ) => {
                     return (
                         <Contact 
                             key={contact.id} 

@@ -21,8 +21,8 @@ const AddContact = ({ contacts, setContacts }) => {
 
     const contactData = (event) => {
         setContacts([
+            contact,
             ...contacts,
-            contact
         ])
 
         setContact({

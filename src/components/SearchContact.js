@@ -1,11 +1,14 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
 
-const SearchContact = () => {
+const SearchContact = ({ searchText, setSearchText }) => {
+    const searchData = (event) => {
+        setSearchText(event.target.value)
+    }
     return (
         <Form>
             <Form.Group controlId="searchContact">
-                <Form.Control type="email" placeholder="Search contact" />
+                <Form.Control type="email" value={searchText} onChange={searchData} placeholder="Search contact" />
             </Form.Group>
         </Form>
     )
