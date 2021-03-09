@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-const Contact = ({contact, contacts, setContacts, setSelectContact}) => {
+const Contact = ({contact, contacts, setContacts}) => {
 
     const [toggleContactData, setToggleContactData] = useState(false)
-
-    const selectContact = ( id ) => {
-        const foundContact = contacts.find( ( contact ) => {
-            return contact.id === id
-        } )
-        setSelectContact(foundContact)
-    }
 
     const toggleContact = () => {
         setToggleContactData( ( toggleContactData ) => {
@@ -37,7 +31,7 @@ const Contact = ({contact, contacts, setContacts, setSelectContact}) => {
                         </div>
                         <div>
                             <Button className="mr-1" onClick={toggleContact}>Toggle</Button>
-                            <Button className="mr-1" onClick={() => selectContact(contact.id)}>Edit</Button>
+                            <Link to={`contact/edit/${contact.id}`} className="btn btn-primary mr-1">Edit</Link>
                             <Button onClick={() => deleteContact(contact.id)}>X</Button>
                         </div>
                     </div>

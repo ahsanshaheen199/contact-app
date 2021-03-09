@@ -1,5 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
@@ -16,8 +17,8 @@ const Header = () => {
                     <Col>
                         <div className="">
                             <ul className="list-unstyled m-0 d-flex justify-content-end">
-                                <li><a className="mr-3" href="#!">Home</a></li>
-                                <li><a href="#!">Home</a></li>
+                                <li><Link to="/" className="mr-2">Home</Link></li>
+                                <li><Link to="/add">Add Contact</Link></li>
                             </ul>
                         </div>
                     </Col>

@@ -2,12 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { v4 as uuidv4 } from 'uuid'
 
-const EditContact = ({ contacts, setContacts, selectContact, setSelectContact }) => {
+const EditContact = ({ contacts, setContacts}) => {
     const [contact, setContact] = useState({});
-
-    useEffect(() => {
-        setContact(selectContact)
-    }, [selectContact])
 
     const changeContactData = ( event ) => {
         setContact({
@@ -23,17 +19,6 @@ const EditContact = ({ contacts, setContacts, selectContact, setSelectContact })
                 return contactItem.id === contact.id  ? contact : contactItem
             } )
         ])
-
-        setContact({
-            id: uuidv4(),
-            firstName: '',
-            lastName: '',
-            email: '',
-            profession: '',
-            contactType: 'personal',
-        });
-
-        setSelectContact(null)
 
         event.preventDefault()
     }
