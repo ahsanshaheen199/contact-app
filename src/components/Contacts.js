@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import Contact from './Contact'
 import SearchContact from './SearchContact'
-const Contacts = ({ contacts, setContacts }) => {
+import { ContactContext } from '../contexts/Contact.context'
+
+const Contacts = () => {
+    const { contacts } = useContext(ContactContext)
     const [searchText, setSearchText] = useState('');
 
     const filteredContacts = contacts.filter( contactItem => 
@@ -25,8 +28,6 @@ const Contacts = ({ contacts, setContacts }) => {
                                     <Contact 
                                         key={contact.id} 
                                         contact={contact}
-                                        contacts={contacts}
-                                        setContacts={setContacts}
                                     />
                                 )
                             } )

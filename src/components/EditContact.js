@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import { useHistory, useParams } from 'react-router-dom'
+import { ContactContext } from '../contexts/Contact.context'
 
-const EditContact = ({ contacts, setContacts, match, history}) => {
+const EditContact = () => {
     const [contact, setContact] = useState({});
 
-    let paramId = match.params.id
+    let { contactId } = useParams()
+    const history = useHistory()
+    const { contacts, setContacts } = useContext(ContactContext)
 
     useEffect( () => {
         let selectContact = contacts.find( contactItem => {
-            return contactItem.id === paramId
+            return contactItem.id === contactId
         })
         
         if( selectContact ) {
             setContact(selectContact);
         }
-    }, [contacts,paramId] )
+    }, [contacts,contactId] )
 
     const changeContactData = ( event ) => {
         setContact({

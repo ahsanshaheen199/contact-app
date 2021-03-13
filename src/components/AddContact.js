@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { v4 as uuidv4 } from 'uuid'
+import { ContactContext } from '../contexts/Contact.context'
+import { useHistory } from 'react-router-dom'
 
-const AddContact = ({ contacts, setContacts, history }) => {
+const AddContact = () => {
+    const { contacts, setContacts } = useContext(ContactContext)
+    const history = useHistory()
+
     const [contact, setContact] = useState({
         id: uuidv4(),
         firstName: '',

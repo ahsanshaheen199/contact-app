@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { ContactContext } from  '../contexts/Contact.context'
 
-const Contact = ({contact, contacts, setContacts}) => {
-
+const Contact = ({contact}) => {
+    const { contacts, setContacts } = useContext( ContactContext )
     const [toggleContactData, setToggleContactData] = useState(false)
 
     const toggleContact = () => {
