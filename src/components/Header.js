@@ -10,7 +10,7 @@ const Header = () => {
                     <Col>
                         <div className="logo">
                             <h2>
-                                <a href="#!">Contacts</a>
+                                <Link to="/">Contact App</Link>
                             </h2>
                         </div>
                     </Col>
