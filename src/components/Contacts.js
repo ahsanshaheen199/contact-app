@@ -5,8 +5,10 @@ import SearchContact from './SearchContact'
 import { ContactContext } from '../contexts/Contact.context'
 
 const Contacts = () => {
-    const { contacts } = useContext(ContactContext)
-    const [searchText, setSearchText] = useState('');
+    const { state } = useContext(ContactContext)
+    const [searchText, setSearchText] = useState('')
+
+    const { contacts } = state
 
     const filteredContacts = contacts.filter( contactItem => 
         contactItem.firstName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 || contactItem.lastName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 

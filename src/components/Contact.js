@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { ContactContext } from  '../contexts/Contact.context'
 
 const Contact = ({contact}) => {
-    const { contacts, setContacts } = useContext( ContactContext )
+    const { dispatch } = useContext( ContactContext )
     const [toggleContactData, setToggleContactData] = useState(false)
 
     const toggleContact = () => {
@@ -14,13 +14,7 @@ const Contact = ({contact}) => {
     }
 
     const deleteContact = (id) => {
-        const filterContacts = contacts.filter( (contactItem) => {
-            return contactItem.id !== id
-        } )
-
-        setContacts([
-            ...filterContacts
-        ])
+        dispatch({ type: 'DELETE_CONTACT', payload: id })
     }
     return (
         <>

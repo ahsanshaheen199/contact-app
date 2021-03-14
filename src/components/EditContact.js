@@ -8,7 +8,8 @@ const EditContact = () => {
 
     let { contactId } = useParams()
     const history = useHistory()
-    const { contacts, setContacts } = useContext(ContactContext)
+    const { state, dispatch } = useContext(ContactContext)
+    const { contacts } = state
 
     useEffect( () => {
         let selectContact = contacts.find( contactItem => {
@@ -28,12 +29,12 @@ const EditContact = () => {
     }
 
     const contactData = (event) => {
-
-        setContacts([
-            ...contacts.map( contactItem => {
-                return contactItem.id === contact.id  ? contact : contactItem
-            } )
-        ])
+        dispatch({ type: 'EDIT_CONTACT', payload: contact })
+        // setContacts([
+        //     ...contacts.map( contactItem => {
+        //         return contactItem.id === contact.id  ? contact : contactItem
+        //     } )
+        // ])
 
         history.push('/')
 

@@ -5,7 +5,7 @@ import { ContactContext } from '../contexts/Contact.context'
 import { useHistory } from 'react-router-dom'
 
 const AddContact = () => {
-    const { contacts, setContacts } = useContext(ContactContext)
+    const { dispatch } = useContext(ContactContext)
     const history = useHistory()
 
     const [contact, setContact] = useState({
@@ -25,10 +25,7 @@ const AddContact = () => {
     }
 
     const contactData = (event) => {
-        setContacts([
-            contact,
-            ...contacts,
-        ])
+        dispatch({ type: 'ADD_CONTACT', payload: contact });
 
         history.push('/')
 
