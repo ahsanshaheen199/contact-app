@@ -1,14 +1,25 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import Contact from './Contact'
 import SearchContact from './SearchContact'
 import { ContactContext } from '../contexts/Contact.context'
 
 const Contacts = () => {
-    const { state } = useContext(ContactContext)
+    const { state, dispatch } = useContext(ContactContext)
+    
+    useEffect(() => {
+        dispatch({ type: 'IS_LOADING', payload: true})
+        fetch('http://localhost:5000/contacts')
+        .then( res => res.json())
+        .then( contacts => {
+            dispatch({ type: 'ADDING_CONTACTS', payload: contacts})
+            dispatch({ type: 'IS_LOADING', payload: false})
+        } )
+    }, [])
+
     const [searchText, setSearchText] = useState('')
 
-    const { contacts } = state
+    const { contacts, isLoading } = state
 
     const filteredContacts = contacts.filter( contactItem => 
         contactItem.firstName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 || contactItem.lastName.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 
@@ -24,7 +35,9 @@ const Contacts = () => {
                             searchText={searchText} 
                             setSearchText={setSearchText} 
                         />
-                        {
+                        {   
+                            isLoading ? 
+                            <h2>Loading...</h2> :
                             filteredContacts.map( ( contact ) => {
                                 return (
                                     <Contact 

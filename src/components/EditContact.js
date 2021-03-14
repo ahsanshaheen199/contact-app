@@ -29,12 +29,16 @@ const EditContact = () => {
     }
 
     const contactData = (event) => {
-        dispatch({ type: 'EDIT_CONTACT', payload: contact })
-        // setContacts([
-        //     ...contacts.map( contactItem => {
-        //         return contactItem.id === contact.id  ? contact : contactItem
-        //     } )
-        // ])
+        fetch(`http://localhost:5000/contacts/${contactId}`,{
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(contact)
+        })
+        .then( res => res.json())
+        .then( serverContact =>  dispatch({ type: 'EDIT_CONTACT', payload: serverContact }) )
+        .catch( error => console.error('Error:', error) )
 
         history.push('/')
 

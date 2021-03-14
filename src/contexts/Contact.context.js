@@ -2,28 +2,24 @@ import React, { createContext, useReducer } from 'react'
 export const ContactContext = createContext();
 
 const initialState = {
-  contacts : [
-    {
-      id: '1',
-      firstName: 'Ahsan',
-      lastName: 'Habib',
-      email: 'test@test.com',
-      profession: 'WordPress Developer',
-      contactType: 'personal',
-    },
-    {
-      id: '2',
-      firstName: 'Asaduzzaman',
-      lastName: 'Shameem',
-      email: 'test@test.com',
-      profession: 'Service Holder',
-      contactType: 'professional',
-    }
-  ]
+  contacts : [],
+  isLoading: false
 };
 
 const contactReducer = ( state, action ) => {
   switch( action.type ) {
+    case 'IS_LOADING': 
+      return {
+        ...state,
+        isLoading: action.payload
+      }
+    case 'ADDING_CONTACTS':
+      return {
+        ...state,
+        contacts: [
+          ...action.payload
+        ]
+      }
     case 'ADD_CONTACT':
       return {
         ...state,

@@ -14,6 +14,12 @@ const Contact = ({contact}) => {
     }
 
     const deleteContact = (id) => {
+        fetch(`http://localhost:5000/contacts/${id}`,{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
         dispatch({ type: 'DELETE_CONTACT', payload: id })
     }
     return (

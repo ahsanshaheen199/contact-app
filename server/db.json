@@ -1,0 +1,28 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "firstName": "Ahsan",
+      "lastName": "Habib Shaheen",
+      "email": "ahsanshaheen199@gmail.com",
+      "profession": "WordPress Developer",
+      "contactType": "personal"
+    },
+    {
+      "id": "2",
+      "firstName": "Asaduzzaman",
+      "lastName": "Shameem",
+      "email": "test@test.com",
+      "profession": "Service Holder",
+      "contactType": "professional"
+    },
+    {
+      "firstName": "Sadia",
+      "lastName": "Afrin Sima",
+      "email": "sadia@gmail.com",
+      "profession": "Student",
+      "contactType": "personal",
+      "id": "MNeNsDX"
+    }
+  ]
+}

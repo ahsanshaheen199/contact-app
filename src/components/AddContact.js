@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import { v4 as uuidv4 } from 'uuid'
 import { ContactContext } from '../contexts/Contact.context'
 import { useHistory } from 'react-router-dom'
 
@@ -9,7 +8,6 @@ const AddContact = () => {
     const history = useHistory()
 
     const [contact, setContact] = useState({
-        id: uuidv4(),
         firstName: '',
         lastName: '',
         email: '',
@@ -25,7 +23,16 @@ const AddContact = () => {
     }
 
     const contactData = (event) => {
-        dispatch({ type: 'ADD_CONTACT', payload: contact });
+        fetch('http://localhost:5000/contacts',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(contact)
+        })
+        .then( res => res.json())
+        .then( serverContact =>  dispatch({ type: 'ADD_CONTACT', payload: serverContact }) )
+        .catch( error => console.error('Error:', error) )
 
         history.push('/')
 
